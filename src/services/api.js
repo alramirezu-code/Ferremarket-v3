@@ -1,10 +1,14 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://localhost:8081/api',
 });
 
-// La palabra "export" aquí es obligatoria para poder usar { obtenerProductos }
+// Productos
 export const obtenerProductos = () => api.get('/productos');
+export const crearProducto = (producto) => api.post('/productos', producto);
+
+// Categorías (ajusta '/categorias' si tu CategoriaController usa otro nombre)
+export const obtenerCategorias = () => api.get('/categorias');
 
 export default api;
