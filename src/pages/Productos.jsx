@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
-import { leerTodosLosProductos } from "../data/productos.js";
-import ProductCard from "../components/ProductCard.jsx";
+
 
 export default function Productos() {
   const [filtro, setFiltro] = useState("");
