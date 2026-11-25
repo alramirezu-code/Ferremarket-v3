@@ -3,10 +3,14 @@ import { obtenerProductos } from './services/api';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Blogs from './pages/Blogs';
 import Contacto from './pages/Contacto';
+import Nosotros from './pages/Nosotros';
 import Productos from './pages/Productos';
 import './App.css'
 import BlogTaladro from './pages/BlogTaladro';
 import BlogPaneles from './pages/BlogPaneles';
+import AgregarProducto from './pages/AgregarProducto';
+import Admin from './pages/Admin';
+import InicioSesion from './pages/InicioSesion';
 
 function Inicio() {
   return(
@@ -58,7 +62,7 @@ export default function App() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#">inicio sesion</a>
+                <a className="nav-link"><Link to="/InicioSesion">Inicio sesion</Link></a>
               </li>
             </ul>
 
@@ -71,7 +75,7 @@ export default function App() {
               />
 
               <button className="btn btn-neon" type="submit">
-                Buscar
+                  Buscar
               </button>
             </form>
 
@@ -83,8 +87,12 @@ export default function App() {
         <Route path="/Productos" element={<Productos/>} />
         <Route path="/Blogs" element={<Blogs />} />
         <Route path="/BlogTaladro" element={<BlogTaladro />} />
-        <Route path="/BlogPaneles" element={<BlogPaneles />} />
+        <Route path="/BlogPaneles" element={<BlogPaneles />} /> 
+        <Route path="/Nosotros" element={<Nosotros />} />
         <Route path="/Contacto" element={<Contacto />} />
+        <Route path="/InicioSesion" element={<InicioSesion />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/AgregarProducto" element={<AgregarProducto />} />
       </Routes>
     </BrowserRouter>
   );

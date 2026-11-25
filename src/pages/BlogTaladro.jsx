@@ -34,10 +34,12 @@ export default function BlogTaladro() {
                     diferentes brocas y accesorios.
                 </p>
 
-                <Link to="/Blogs">
-                    Volver a Blogs
-                </Link>
-
+                <button type="submit" className="btn btn-primary w-100">
+                    <Link to="/Blogs" className="linkColor">
+                        Volver a Blogs
+                    </Link>
+                </button>
+                
 
             </article>
             

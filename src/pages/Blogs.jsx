@@ -29,11 +29,12 @@ export default function Blogs() {
                                         Conoce algunos aspectos importantes que debes considerar
                                         al momento de elegir un taladro para tus proyectos.
                                     </p>
- 
-                                    <Link to="/BlogTaladro">
+
+                                <button type="submit" className="btn btn-primary w-100">
+                                    <Link to="/BlogTaladro" className="linkColor">
                                         Leer más
                                     </Link>
-
+                                </button>
                                     
                             </div>
                         </article>
@@ -56,7 +57,7 @@ export default function Blogs() {
                                     para mejorar distintos espacios del hogar.
                                 </p>
 
-                                <Link to="/BlogPaneles">
+                                <Link to="/BlogPaneles" className="linkColor">
                                     Leer más
                                 </Link>
 

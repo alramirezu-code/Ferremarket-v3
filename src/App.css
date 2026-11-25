@@ -305,15 +305,9 @@
   color: #000000;
 }
 
-
-/* MENSAJE DE ERROR */
-
-.alert-danger {
-  background-color: #301820;
-  border: 1px solid #ff526f;
-  color: #ffb8c5;
+.linkColor {
+  color: white;
 }
-
 
 /* RESPONSIVE */
 

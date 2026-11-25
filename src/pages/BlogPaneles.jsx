@@ -32,7 +32,7 @@ export default function BlogPaneles() {
                 terminación.
             </p>
             
-            <Link to="/Blogs">
+            <Link to="/Blogs" className="linkColor">
                 Volver a Blogs
             </Link>
 

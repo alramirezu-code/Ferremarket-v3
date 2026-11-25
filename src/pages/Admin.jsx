@@ -1,0 +1,318 @@
+import { Link } from "react-router-dom"
+export default function Admin() {
+    return(
+        <main class="admin-contenido">
+
+            <section
+                id="admin-inicio"
+                class="admin-seccion solo-admin">
+
+                <h1>
+                    Panel de Administración
+                </h1>
+
+                <p>
+                    Bienvenido al sistema administrativo de FerreMarket.
+                </p>
+
+            </section>
+
+            {/* Formulario de Productos */}
+            
+            <section
+                id="admin-productos"
+                class="admin-seccion d-none">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="mb-0">Productos</h2>
+                    <button class="btn btn-primary solo-admin" onclick="nuevoProductoAdmin()">
+                        + Nuevo producto
+                    </button>
+                </div>
+
+                <div id="lista-admin-productos" class="table-responsive">
+                    <table class="table table-striped table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th class="solo-admin">Acciones</th>
+                                <th>advertencias</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-productos"></tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <section
+                id="admin-nuevo-producto"
+                class="admin-seccion d-none solo-admin">
+
+                <h2 id="tituloFormProducto">Agregar Producto</h2>
+
+                <form id="formProductoAdmin" novalidate>
+                    <input type="hidden" id="adm-editando" value=""/>
+
+                    <div class="mb-3">
+                        <label for="adm-codigo" class="form-label">Código *</label>
+                        <input type="text" id="adm-codigo" class="form-control" placeholder="Ej: PRO010"/>
+                        <div class="invalid-feedback" id="error-adm-codigo"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="adm-nombre" class="form-label">Nombre *</label>
+                        <input type="text" id="adm-nombre" class="form-control"/>
+                        <div class="invalid-feedback" id="error-adm-nombre"></div>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="adm-descripcion" class="form-label">Descripción (opcional, máx. 500)</label>
+                        <textarea id="adm-descripcion" class="form-control" rows="3"></textarea>
+                        <div class="invalid-feedback" id="error-adm-descripcion"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="adm-precio" class="form-label">Precio *</label>
+                            <input type="number" id="adm-precio" class="form-control" step="any"/>
+                            <div class="invalid-feedback" id="error-adm-precio"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="adm-stock" class="form-label">Stock *</label>
+                            <input type="number" id="adm-stock" class="form-control"/>
+                            <div class="invalid-feedback" id="error-adm-stock"></div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="adm-stockCritico" class="form-label">Stock crítico (opcional)</label>
+                            <input type="number" id="adm-stockCritico" class="form-control"/>
+                            <div class="invalid-feedback" id="error-adm-stockCritico"></div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="adm-categoria" class="form-label">Categoría *</label>
+                        <select id="adm-categoria" class="form-select">
+                            <option value="">-- Seleccione la categoría --</option>
+                            <option value="Herramientas">Herramientas</option>
+                            <option value="Materiales">Materiales</option>
+                            <option value="Adhesivos">Adhesivos</option>
+                        </select>
+                        <div class="invalid-feedback" id="error-adm-categoria"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="adm-imagen" class="form-label">Imagen (opcional)</label>
+                        <input type="text" id="adm-imagen" class="form-control" placeholder="Ej: img/mi_producto.webp"/>
+                    </div>
+
+                    <button type="submit" id="btnGuardarProducto" class="btn btn-primary">Guardar producto</button>
+                    <button type="button" id="btnCancelarProducto" class="btn btn-secondary d-none"
+                            onclick="limpiarFormularioProducto(); mostrarSeccionAdmin('productos')">
+                        Cancelar
+                    </button>
+                </form>
+            </section>
+
+
+            <section
+                id="admin-ordenes"
+                class="admin-seccion d-none">
+
+                <div id="vista-lista-ordenes">
+                    <h2>Órdenes</h2>
+
+                    <div id="lista-ordenes" class="table-responsive">
+                        <table class="table table-striped table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>N° orden</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-ordenes"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {/* DETALLES DE UNA ORDEN */}
+                <div id="vista-detalle-orden" class="d-none">
+                    <button class="btn btn-secondary mb-3" onclick="volverListaOrdenes()">
+                        ← Volver a órdenes
+                    </button>
+                    <div id="detalle-orden-contenido"></div>
+                </div>
+
+            </section>
+
+
+            {/* Formulario de usuarios */}
+            <section
+                id="admin-usuarios"
+                class="admin-seccion d-none solo-admin">
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+
+                    <h2 class="mb-0">
+                        Usuarios
+                    </h2>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="mostrarSeccionAdmin('nuevo-usuario')">
+
+                        + Nuevo usuario
+
+                    </button>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="table table-striped table-hover align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>RUN</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Región / Comuna</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tbody-usuarios"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <section
+                id="admin-nuevo-usuario"
+                class="admin-seccion d-none solo-admin">
+
+                <h2>Nuevo Usuario</h2>
+
+            <form id="formUsuarioAdmin">
+
+                <div class="mb-3">
+                    <label class="form-label">RUN *</label>
+                    <input type="text" id="admUsuario-run"
+                        class="form-control"
+                        minlength="7" maxlength="9"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre *</label>
+                    <input type="text" id="admUsuario-nombre"
+                        class="form-control"
+                        maxlength="50"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Apellidos *</label>
+                    <input type="text" id="admUsuario-apellidos"
+                        class="form-control"
+                        maxlength="100"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo *</label>
+                    <input type="email" id="admUsuario-correo"
+                        class="form-control"
+                        maxlength="100"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Fecha de nacimiento</label>
+                    <input type="date"
+                        id="admUsuario-fecha"
+                        class="form-control"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Región *</label>
+
+                    <select id="admUsuario-region" class="form-select">
+                        <option value="">-- Seleccione región --</option>
+                        <option value="RM">Región Metropolitana</option>
+                        <option value="ARAUCANIA">Araucanía</option>
+                        <option value="NUBLE">Ñuble</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Comuna *</label>
+
+                    <select id="admUsuario-comuna"
+                            class="form-select"
+                            disabled>
+
+                        <option value="">-- Seleccione comuna --</option>
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Dirección *</label>
+
+                    <input type="text"
+                        id="admUsuario-direccion"
+                        class="form-control"
+                        maxlength="300"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contraseña *</label>
+
+                    <input type="password"
+                        id="admUsuario-clave"
+                        class="form-control"
+                        minlength="4"
+                        maxlength="10"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Rol *</label>
+
+                    <select id="admUsuario-rol"
+                            class="form-select">
+
+                        <option value="">-- Seleccione rol --</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Cliente">Cliente</option>
+                        <option value="Vendedor">Vendedor</option>
+
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Guardar usuario
+                </button>
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        onclick="mostrarSeccionAdmin('usuarios')">
+                    Cancelar
+                </button>
+
+            </form>
+
+            </section>
+        </main>
+    )
+}
