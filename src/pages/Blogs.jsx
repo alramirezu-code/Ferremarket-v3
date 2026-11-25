@@ -1,10 +1,10 @@
+import { Link } from "react-router-dom"
 export default function Blogs() {
 
     return(
-       <div>
-            
+       <div> 
             <div className="container my-5">
-                <BrowserRouter>
+
                     <h1 className="text-center mb-4">Blog FerreMarket</h1>
                     <p className="descripcion">
                         Consejos, información y recomendaciones para tus proyectos.
@@ -14,10 +14,10 @@ export default function Blogs() {
                             <article className="card blog-card">
 
                                 <img
-                                    src="img/Taladro.webp"
-                                    className="card-img-top"
-                                    alt="Taladro">
-                                </img>
+                                    src="https://www.yolito.cl/Content/Productos/taladro-inalambrico-10007580.jpg"
+                                    className="img-fluid rounded mb-4"
+                                    height="200" width="200"
+                                    alt=""/>
 
                                 <div className="card-body">
 
@@ -29,12 +29,12 @@ export default function Blogs() {
                                         Conoce algunos aspectos importantes que debes considerar
                                         al momento de elegir un taladro para tus proyectos.
                                     </p>
+ 
+                                    <Link to="/BlogTaladro">
+                                        Leer más
+                                    </Link>
 
-                                <a href="Blog Taladro.html"
-                                className="btn btn-primary">
-                                    <Link to="/BlogTaladro">Leer más</Link>
-                                </a>
-
+                                    
                             </div>
                         </article>
 
@@ -43,8 +43,7 @@ export default function Blogs() {
                             <img
                                 src="img/Panel_metal_look_madera.webp"
                                 className="card-img-top"
-                                alt="Panel con apariencia de madera">
-                            </img>
+                                alt="Panel con apariencia de madera"/>
 
                             <div className="card-body">
 
@@ -57,18 +56,13 @@ export default function Blogs() {
                                     para mejorar distintos espacios del hogar.
                                 </p>
 
-                                <a href="Blog Paneles.html"
-                                className="btn btn-primary">
+                                <Link to="/BlogPaneles">
                                     Leer más
-                                </a>
+                                </Link>
 
                             </div>
                         </article>
-                        <Routes>
-                            <Route path="/BlogTaladro" element={<BlogTaladro />} />
-                        </Routes>
-                    </section>
-                </BrowserRouter>
+                </section>
             </div>       
         </div>
     )

@@ -5,6 +5,8 @@ import Blogs from './pages/Blogs';
 import Contacto from './pages/Contacto';
 import Productos from './pages/Productos';
 import './App.css'
+import BlogTaladro from './pages/BlogTaladro';
+import BlogPaneles from './pages/BlogPaneles';
 
 function Inicio() {
   return(
@@ -80,6 +82,8 @@ export default function App() {
         <Route path="/" element={<Inicio />} />
         <Route path="/Productos" element={<Productos/>} />
         <Route path="/Blogs" element={<Blogs />} />
+        <Route path="/BlogTaladro" element={<BlogTaladro />} />
+        <Route path="/BlogPaneles" element={<BlogPaneles />} />
         <Route path="/Contacto" element={<Contacto />} />
       </Routes>
     </BrowserRouter>
