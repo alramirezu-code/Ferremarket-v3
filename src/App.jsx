@@ -11,6 +11,7 @@ import BlogPaneles from './pages/BlogPaneles';
 import AgregarProducto from './pages/AgregarProducto';
 import Admin from './pages/Admin';
 import InicioSesion from './pages/InicioSesion';
+import DetalleProducto from './pages/DetalleProducto';
 
 function Inicio() {
   return(
@@ -85,6 +86,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/Productos" element={<Productos/>} />
+        <Route path="/DetalleProducto" element={<DetalleProducto />} />
         <Route path="/Blogs" element={<Blogs />} />
         <Route path="/BlogTaladro" element={<BlogTaladro />} />
         <Route path="/BlogPaneles" element={<BlogPaneles />} /> 
