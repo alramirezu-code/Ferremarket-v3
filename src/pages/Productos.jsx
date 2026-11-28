@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { obtenerProductos } from "../services/api";
+import { Link } from "react-router-dom"
 
 export default function Productos() {
   // Estado para guardar los productos que vienen de Spring Boot
@@ -37,9 +38,15 @@ return (
                 <div className="card-body">
 
                   <img src={prod.imagenUrl} alt=""  height="200" width="200" />
-                  <h5 className="card-title">{prod.nombre}</h5>
-                  <p className="card-text">Precio: ${prod.precio}</p>
-                  
+                  <h5 className="card-title">{prod.nombreproducto}</h5>
+                  <p className="card-text">Descripcion: ${prod.descripcion}</p>
+                  <p className="card-precio">Precio: ${prod.precio}</p>
+                  <button type="submit" className="btn btn-primary w-100">
+                    <Link to="/DetalleProducto" className="linkColor">
+                        Más informacion
+                    </Link>
+                  </button>
+
                 </div>
               </div>
             </div>

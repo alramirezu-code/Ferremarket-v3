@@ -8,6 +8,19 @@ export default function DetalleProducto() {
             </h1>
 
             <section id="detalleProducto">
+                <div className="card-body">
+
+                  <img src={prod.imagenUrl} alt=""  height="200" width="200" />
+                  <h5 className="card-title">{prod.nombreproducto}</h5>
+                  <p className="card-text">Descripcion: ${prod.descripcion}</p>
+                  <p className="card-precio">Precio: ${prod.precio}</p>
+                  <button type="submit" className="btn btn-primary w-100">
+                    <Link to="/DetalleProducto" className="linkColor">
+                        Más informacion
+                    </Link>
+                  </button>
+
+                </div>
             </section>
 
 

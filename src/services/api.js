@@ -8,7 +8,10 @@ const api = axios.create({
 export const obtenerProductos = () => api.get('/productos');
 export const crearProducto = (producto) => api.post('/productos', producto);
 
-// Categorías (ajusta '/categorias' si tu CategoriaController usa otro nombre)
+
+// Categorías
 export const obtenerCategorias = () => api.get('/categorias');
+
+
 
 export default api;

@@ -59,7 +59,10 @@ export default function App() {
 
               <li className="nav-item">
                 <a className='nav-link'> <Link to="/Contacto">Contacto</Link></a>
-                 
+              </li>
+
+              <li className="nav-item">
+                <a className='nav-link'>   <Link to="/Productos"></Link></a>
               </li>
 
               <li className="nav-item">
